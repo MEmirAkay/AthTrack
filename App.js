@@ -1,20 +1,47 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Pressable,
+  Alert,
+  SectionList,
+  TouchableOpacity,
+  Button,
+} from "react-native";
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+
+const Stack = createNativeStackNavigator();
+
+import Main from "./pages/main/main";
+import Sleep from "./pages/sleep/sleep";
+import Weight from "./pages/weight/weight";
+
+import TrainingNavigator from "./pages/training/trainingMainNavigator"
+import DietNavigator from "./pages/diet/dietNavigator";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer >
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen
+          name="Main"
+          options={{header: () => null}}
+          component={Main}
+          
+        />
+        <Stack.Screen name="TrainingMainNavigator" component={TrainingNavigator} options={{header: () => null}} />
+        <Stack.Screen name="DietNavigator" component={DietNavigator} options={{header: () => null}} />
+        <Stack.Screen name="Sleep" component={Sleep} options={{header: () => null}} />
+        <Stack.Screen name="Weight" component={Weight} options={{header: () => null}} />
+      </Stack.Navigator>
+    </NavigationContainer>
+    
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
