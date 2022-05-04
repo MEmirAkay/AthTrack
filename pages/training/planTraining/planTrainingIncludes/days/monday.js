@@ -35,7 +35,7 @@ export default class Monday extends Component {
   }
 
   componentDidMount() {
-    fetch("http://10.3.4.136/BitirmeApi/fetchStartDay.php", {
+    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/fetchStartDay.php", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -68,7 +68,7 @@ export default class Monday extends Component {
         "Please set how will you increase your rate.(If you filled rep section program will automaticely set for repetition or if you filled time section it'll set automaticely for time.)"
       );
     } else {
-      fetch("http://10.3.4.136/BitirmeApi/exercise.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/exercise.php", {
         method: "POST",
         headers: {
           Accept: "application/json",

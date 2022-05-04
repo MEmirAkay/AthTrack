@@ -41,7 +41,7 @@ export default class HeaderPlanTraining extends Component {
     } else if (this.state.title == "" && this.state.start_day == "") {
       Alert.alert("Please fill title and select date.");
     } else {
-      fetch("http://10.3.4.136/BitirmeApi/PostData.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/PostData.php", {
         method: "POST",
         headers: {
           Accept: "application/json",

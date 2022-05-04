@@ -50,7 +50,7 @@ export default class FoodSearch extends Component {
     ) {
       Alert.alert("Please fill all fields");
     } else {
-      fetch("http://10.3.4.83/BitirmeApi/foodNew.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/foodNew.php", {
         method: "POST",
         headers: {
           Accept: "application/json",

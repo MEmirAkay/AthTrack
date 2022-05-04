@@ -34,7 +34,7 @@ export default class Diet extends Component {
 
   dietForm = () => {
     const fetchTodaysFoods = () => {
-      fetch("http://10.3.4.83/BitirmeApi/todaysFoods.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysFoods.php", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -50,7 +50,7 @@ export default class Diet extends Component {
           console.log(responseJson);
         });
 
-      fetch("http://10.3.4.83/BitirmeApi/todaysMacronutrients.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysMacronutrients.php", {
         method: "POST",
         headers: {
           Accept: "application/json",

@@ -26,7 +26,7 @@ export default class Weight extends Component {
   }
 
   componentDidMount() {
-    fetch("http://10.3.4.102/BitirmeApi/weightData.php", {
+    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/weightData.php", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -47,7 +47,7 @@ export default class Weight extends Component {
       console.log("Weight : %d", this.state.weight);
       console.log("Hunger : %s", this.state.hunger);
 
-      fetch("http://10.3.4.102/BitirmeApi/weight.php", {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/weight.php", {
         method: "POST",
         headers: {
           Accept: "application/json",

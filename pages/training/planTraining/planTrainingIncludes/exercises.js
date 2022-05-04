@@ -29,7 +29,7 @@ export default class ExercisePlanTraining extends Component {
   }
 
   componentDidMount() {
-    fetch("http://10.3.4.136/BitirmeApi/fetchDaysStatus.php", {
+    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/fetchDaysStatus.php", {
       method: "POST",
       headers: {
         Accept: "application/json",
