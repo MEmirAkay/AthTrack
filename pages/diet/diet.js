@@ -6,12 +6,11 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  Dimensions,
   FlatList,
 } from "react-native";
 
 import { Component, useEffect } from "react";
-import { LineChart, PieChart } from "react-native-chart-kit";
+import { PieChart } from "react-native-chart-kit";
 
 export default class Diet extends Component {
   constructor(props) {
@@ -33,16 +32,13 @@ export default class Diet extends Component {
   }
 
   dietForm = () => {
-    useEffect(() => {
-      
+    useEffect(() => {   
       fetchTodaysFoods();
-      
       return () => {};
     }, []);
     
     const fetchTodaysFoods = () => {
       
-
       const Today = new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear();
       this.setState({date : Today});
       console.log(Today);
@@ -105,15 +101,6 @@ export default class Diet extends Component {
                 this.state.dailyprot +
                 this.state.dailyfat),
           });
-
-          console.log(this.state.dailykcal);
-          console.log(this.state.dailykarb);
-          console.log(this.state.dailyprot);
-          console.log(this.state.dailyfat);
-          console.log("-----");
-          console.log(this.state.dailykarbPerc);
-          console.log(this.state.dailyprotPerc);
-          console.log(this.state.dailyfatPerc);
         });
     };
 
@@ -272,7 +259,6 @@ export default class Diet extends Component {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar hidden={true} />
-
         <ScrollView>
           <Text
             style={{
@@ -280,8 +266,7 @@ export default class Diet extends Component {
               color: "black",
               fontFamily: "Roboto",
               fontSize: 50,
-            }}
-          >
+            }}>
             Diet
           </Text>
           <this.dietForm />
