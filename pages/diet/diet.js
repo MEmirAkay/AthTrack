@@ -32,17 +32,12 @@ export default class Diet extends Component {
   }
 
   dietForm = () => {
-    useEffect(() => {   
-      fetchTodaysFoods();
-      return () => {};
-    }, []);
-    
-    const fetchTodaysFoods = () => {
+    useEffect(() => { 
       
       const Today = new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear();
       this.setState({date : Today});
       console.log(Today);
-      
+
       fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysFoods.php", {
         method: "POST",
         headers: {
@@ -50,7 +45,7 @@ export default class Diet extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          date: this.state.date,
+          date: Today,
         }),
       })
         .then((response) => response.json())
@@ -67,7 +62,7 @@ export default class Diet extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          date: this.state.date,
+          date: Today,
         }),
       })
         .then((response) => response.json())
@@ -102,37 +97,9 @@ export default class Diet extends Component {
                 this.state.dailyfat),
           });
         });
-    };
 
-    const ItemView = ({ item }) => {
-      return (
-        <View>
-          <TouchableOpacity
-            style={{
-              borderRadius: 20,
-              margin: 8,
-              backgroundColor: "blue",
-              padding: 20,
-            }}
-            onPress={() => {
-              console.log(item.id);
-              this.setState({ selectedFoodName: item.foodname });
-              this.setState({ selectedFoodId: item.id });
-              this.setState({ selectedFoodCarb: item.foodcarbgr });
-              this.setState({ selectedFoodProt: item.foodprotgr });
-              this.setState({ selectedFoodFat: item.foodfatgr });
-              this.setState({ selectedFoodGrMemo: item.foodgr });
-              //setModalOpen(true); // Silmek istediğinize emin misiniz modalı çıksın
-            }}
-          >
-            <Text style={{ color: "white", alignSelf: "center" }}>
-              {item.foodname}
-            </Text>
-          </TouchableOpacity>
-        </View>
-      );
-    };
-
+      return () => {};
+    }, []);
     return (
       <View>
         <View>
@@ -174,21 +141,21 @@ export default class Diet extends Component {
             data={[
               {
                 name: "Carbonhydrate",
-                population: Math.round(this.state.dailykarbPerc),
+                population: this.state.dailykarbPerc ? Math.round(this.state.dailykarbPerc) : 0,
                 color: "red",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
               },
               {
                 name: "Protein",
-                population: Math.round(this.state.dailyprotPerc),
+                population: this.state.dailyprotPerc ? Math.round(this.state.dailyprotPerc) : 0,
                 color: "blue",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
               },
               {
                 name: "Fat",
-                population: Math.round(this.state.dailyfatPerc),
+                population: this.state.dailyfatPerc ? Math.round(this.state.dailyfatPerc) : 0,
                 color: "yellow",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
@@ -227,7 +194,6 @@ export default class Diet extends Component {
             borderRadius: 30,
           }}
         ></View>
-
         <Text style={{ alignSelf: "center" }}>List Of Foods</Text>
 
         <View
@@ -245,12 +211,43 @@ export default class Diet extends Component {
     );
   };
 
+
+
   dietRecommended = () => {
+
+    const ItemView = ({ item }) => {
+      return (
+        <View>
+          <TouchableOpacity
+            style={{
+              borderRadius: 20,
+              margin: 8,
+              backgroundColor: "blue",
+              padding: 20,
+            }}
+            onPress={() => {
+              console.log(item.id);
+              this.setState({ selectedFoodName: item.foodname });
+              this.setState({ selectedFoodId: item.id });
+              this.setState({ selectedFoodCarb: item.foodcarbgr });
+              this.setState({ selectedFoodProt: item.foodprotgr });
+              this.setState({ selectedFoodFat: item.foodfatgr });
+              this.setState({ selectedFoodGrMemo: item.foodgr });
+              //setModalOpen(true); // Silmek istediğinize emin misiniz modalı çıksın
+            }}
+          >
+            <Text style={{ color: "white", alignSelf: "center" }}>
+              {item.foodname}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    };
     return (
       <View>
         <FlatList
         style={{height:100}}
-        data={this.state.dataSource} renderItem={this.ItemView} />
+        data={this.state.dataSource} renderItem={ItemView} />
       </View>
     );
   };
@@ -269,8 +266,10 @@ export default class Diet extends Component {
             }}>
             Diet
           </Text>
+
           <this.dietForm />
         </ScrollView>
+
         <this.dietRecommended />
       </SafeAreaView>
     );
