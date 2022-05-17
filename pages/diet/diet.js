@@ -33,7 +33,20 @@ export default class Diet extends Component {
   }
 
   dietForm = () => {
+    useEffect(() => {
+      
+      fetchTodaysFoods();
+      
+      return () => {};
+    }, []);
+    
     const fetchTodaysFoods = () => {
+      
+
+      const Today = new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear();
+      this.setState({date : Today});
+      console.log(Today);
+      
       fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysFoods.php", {
         method: "POST",
         headers: {
@@ -48,6 +61,7 @@ export default class Diet extends Component {
         .then((responseJson) => {
           this.setState({ dataSource: responseJson });
           console.log(responseJson);
+          
         });
 
       fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysMacronutrients.php", {
@@ -62,7 +76,7 @@ export default class Diet extends Component {
       })
         .then((response) => response.json())
         .then((responseJson) => {
-          this.setState({ x: responseJson });
+          
           console.log(responseJson);
 
           this.setState({ dailykcal: responseJson[0].kcalsum });
@@ -102,20 +116,6 @@ export default class Diet extends Component {
           console.log(this.state.dailyfatPerc);
         });
     };
-
-    useEffect(() => {
-      const d = new Date();
-      const year = d.getFullYear();
-      const month = d.getMonth();
-      const day = d.getDate();
-
-      const Today = day + "-" + month + "-" + year;
-      console.log("Today " + Today);
-      this.setState({date : Today});
-      fetchTodaysFoods();
-
-      return () => {};
-    }, []);
 
     const ItemView = ({ item }) => {
       return (
@@ -261,7 +261,9 @@ export default class Diet extends Component {
   dietRecommended = () => {
     return (
       <View>
-        <FlatList data={this.state.dataSource} renderItem={this.ItemView} />
+        <FlatList
+        style={{height:100}}
+        data={this.state.dataSource} renderItem={this.ItemView} />
       </View>
     );
   };

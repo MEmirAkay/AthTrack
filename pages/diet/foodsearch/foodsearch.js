@@ -50,21 +50,32 @@ export default class FoodSearch extends Component {
     ) {
       Alert.alert("Please fill all fields");
     } else {
-      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/foodNew.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          foodName: this.state.foodName,
-          foodGr: this.state.foodGr,
-          foodCarbgr: this.state.foodCarb,
-          foodProtgr: this.state.foodProt,
-          foodFatgr: this.state.foodFat,
-          foodKcal: this.state.kCal,
-        }),
-      });
+      console.log("Posting: \n");
+      console.log("Food Name: " + this.state.foodName);
+      console.log("Gr: " + this.state.foodGr);
+      console.log("Carb: " + this.state.foodCarb);
+      console.log("Prot: " + this.state.foodProt);
+      console.log("Fat: " + this.state.foodFat);
+      console.log("Kcal: " + this.state.kCal);
+
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/foodNew.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            foodName: this.state.foodName,
+            foodGr: this.state.foodGr,
+            foodCarbgr: this.state.foodCarb,
+            foodProtgr: this.state.foodProt,
+            foodFatgr: this.state.foodFat,
+            foodKcal: this.state.kCal,
+          }),
+        }
+      );
     }
   };
 
@@ -259,30 +270,33 @@ export default class FoodSearch extends Component {
 
       const foodKcal = carbGr * 4 + protGr * 4 + fatGr * 9;
 
-      fetch("http://10.3.4.83/BitirmeApi/newdailyFood.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          foodName: this.state.selectedFoodName,
-          foodGr: this.state.selectedFoodGr,
-          foodCarbgr: carbGr,
-          foodProtgr: protGr,
-          foodFatgr: fatGr,
-          foodKcal: foodKcal,
-          date: this.state.date,
-        }),
-      });
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/newdailyFood.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            foodName: this.state.selectedFoodName,
+            foodGr: this.state.selectedFoodGr,
+            foodCarbgr: carbGr,
+            foodProtgr: protGr,
+            foodFatgr: fatGr,
+            foodKcal: foodKcal,
+            date: this.state.date,
+          }),
+        }
+      );
     };
 
     useEffect(() => {
       fetchPosts();
       const d = new Date();
       const year = d.getFullYear();
-      const month = d.getMonth();
-      const day = d.getDay();
+      const month = d.getMonth() +1;
+      const day = d.getDate();
 
       const Today = day + "-" + month + "-" + year;
 
@@ -293,14 +307,14 @@ export default class FoodSearch extends Component {
     }, []);
 
     const fetchPosts = () => {
-      fetch("http://10.3.4.83/BitirmeApi/fetchFoods.php", {
-        method: "POST",
-      })
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/fetchFoods.php"
+      )
         .then((response) => response.json())
         .then((responseJson) => {
           setfilterdData(responseJson);
           setmasterData(responseJson);
-          console.log(this.state.dataSource);
+          console.log(responseJson);
         });
     };
 
@@ -344,7 +358,9 @@ export default class FoodSearch extends Component {
               setModalOpen(true);
             }}
           >
-            <Text style={{ color: "white", alignSelf:'center' }}>{item.foodname}</Text>
+            <Text style={{ color: "white", alignSelf: "center", fontSize: 30 }}>
+              {item.foodname}
+            </Text>
           </TouchableOpacity>
         </View>
       );
@@ -390,6 +406,7 @@ export default class FoodSearch extends Component {
           onChangeText={(text) => searchFilter(text)}
         ></TextInput>
         <FlatList
+          style={{ height: 450 }}
           data={filterdData}
           keyExtractor={(item, index) => index.toString()}
           renderItem={ItemView}
@@ -399,6 +416,8 @@ export default class FoodSearch extends Component {
   };
 
   render() {
+
+    
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar hidden={true} />
