@@ -13,7 +13,7 @@ import {
   Dimensions,
 } from "react-native";
 
-import { Component, useState } from "react";
+import { Component, useEffect} from "react";
 import { LineChart } from "react-native-chart-kit";
 
 export default class Sleep extends Component {
@@ -21,32 +21,113 @@ export default class Sleep extends Component {
     super(props);
 
     this.state = {
-      mood: "1",
-      mood_Perfect: "1",
-      mood_Good: "1",
-      mood_Balanced: "1",
-      mood_Bad: "1",
-      mood_Worst: "1",
+      sleep_time: 0,
+      bed_time: 0,
+      feeling : "",
+      date: new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear(),
+      dateCheck: "",
+      data1:"",
+      data2:"",
+      data3:"",
+      data4:"",
+      data5:"",
+      data6:"",
+      data7:"",
+      sleepScore:""
     };
   }
 
+  
+
+  submitSleep = () => {
+      if(this.state.dateCheck == this.state.date){
+        Alert.alert("You already submitted today's sleep informations. Come back tomorrow.");
+      }else{
+        console.log("date: ",this.state.date);
+        console.log("check: ",this.state.dateCheck);
+        if (this.state.sleep_time != "" && this.state.feeling != "" && this.state.bed_time != "") {
+      console.log("Bed time : %d", this.state.bed_time);
+      console.log("Sleep time: %d", this.state.sleep_time);
+      console.log("Feeling: %s", this.state.feeling);
+      console.log("Date : %s", this.state.date);
+
+
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/sleepSubmit.php", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          bed_time: this.state.bed_time,
+          sleep_time: this.state.sleep_time,
+          feeling: this.state.feeling,
+          date: this.state.date
+        }),
+      });
+
+      Alert.alert("Submitted succesfully !");
+      
+    } else {
+      Alert.alert("Please fill the all field and select feeling type.");
+    }
+      }
+
+    
+  }
+
   sleepForm = () => {
-    const [mood, moodSelected] = useState("0");
-    const [mood_Perfect, mood_PerfectSelected] = useState("0");
-    const [mood_Good, mood_GoodSelected] = useState("0");
-    const [mood_Balanced, mood_BalancedSelected] = useState("0");
-    const [mood_Bad, mood_BadSelected] = useState("0");
-    const [mood_Worst, mood_WorstSelected] = useState("0");
+    useEffect(() => {
+      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/checkSleep.php", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          responseJson ? this.setState({dateCheck : responseJson.date}):this.setState({dateCheck : ""})
+        });
+
+        fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/sleepFetch.php", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({data1: responseJson[0]});
+          this.setState({data2: responseJson[1]});
+          this.setState({data3: responseJson[2]});
+          this.setState({data4: responseJson[3]});
+          this.setState({data5: responseJson[4]});
+          this.setState({data6: responseJson[5]});
+          this.setState({data7: responseJson[6]});
+          this.setState({sleepScore: responseJson[7]});
+        });
+
+    }, [])
 
     return (
       <View>
         <View style={{ flexDirection: "column" }}>
           <TextInput
             style={styles.textInput}
+            onChangeText={
+              (data) => this.setState({ bed_time: data.slice(0,data.indexOf(':')) })           
+            }
             placeholder="When did you get in bed? (Example : 23:00)"
           ></TextInput>
           <TextInput
             style={styles.textInput}
+            onChangeText={
+              
+              (data) => this.setState({ sleep_time: data })
+            
+            }
             placeholder="Sleep Time (Only Hour) (Example : 8)"
           ></TextInput>
         </View>
@@ -59,7 +140,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: mood_Perfect == "1" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Perfect" ? "#2A69F7" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -68,15 +149,9 @@ export default class Sleep extends Component {
               elevation: 20,
             }}
             onPress={() => {
-              mood_Perfect == "1"
-                ? (mood_PerfectSelected("0"),
-                  moodSelected("0"),
-                  console.log(mood_Perfect),
-                  this.setState({ mood_Perfect: mood_Perfect }))
-                : (mood_PerfectSelected("1"),
-                  moodSelected("0"),
-                  console.log(mood_Perfect),
-                  this.setState({ mood_Perfect: mood_Perfect }));
+              this.state.feeling == ""
+                ? this.setState({ feeling: "Perfect" })
+                : this.setState({ feeling: "" });
             }}
           >
             <Text style={{ textAlign: "center", fontSize: 30 }}>😀</Text>
@@ -85,7 +160,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: mood_Good == "1" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Good" ? "#2A69F7" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -94,15 +169,9 @@ export default class Sleep extends Component {
               elevation: 20,
             }}
             onPress={() => {
-              mood_Good == "1"
-                ? (mood_GoodSelected("0"),
-                  moodSelected("0"),
-                  console.log(mood_Good),
-                  this.setState({ mood_Good: mood_Good }))
-                : (mood_GoodSelected("1"),
-                  moodSelected("0"),
-                  console.log(mood_Good),
-                  this.setState({ mood_Good: mood_Good }));
+              this.state.feeling == ""
+                ? this.setState({ feeling: "Good" })
+                : this.setState({ feeling: "" });
             }}
           >
             <Text style={{ textAlign: "center", fontSize: 30 }}>🙂</Text>
@@ -111,7 +180,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: mood_Balanced == "1" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Balanced" ? "#2A69F7" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -120,15 +189,9 @@ export default class Sleep extends Component {
               elevation: 20,
             }}
             onPress={() => {
-              mood_Balanced == "1"
-                ? (mood_BalancedSelected("0"),
-                  moodSelected("0"),
-                  console.log(mood_Balanced),
-                  this.setState({ mood_Balanced: mood_Balanced }))
-                : (mood_BalancedSelected("1"),
-                  moodSelected("0"),
-                  console.log(mood_Balanced),
-                  this.setState({ mood_Balanced: mood_Balanced }));
+              this.state.feeling == ""
+                ? this.setState({ feeling: "Balanced" })
+                : this.setState({ feeling: "" });
             }}
           >
             <Text style={{ textAlign: "center", fontSize: 30 }}>😐</Text>
@@ -136,7 +199,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: mood_Bad == "1" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Sleepy" ? "#2A69F7" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -145,15 +208,9 @@ export default class Sleep extends Component {
               elevation: 20,
             }}
             onPress={() => {
-              mood_Bad == "1"
-                ? (mood_BadSelected("0"),
-                  moodSelected("0"),
-                  console.log(mood_Bad),
-                  this.setState({ mood_Bad: mood_Bad }))
-                : (mood_BadSelected("1"),
-                  moodSelected("0"),
-                  console.log(mood_Bad),
-                  this.setState({ mood_Bad: mood_Bad }));
+              this.state.feeling == ""
+                ? this.setState({ feeling: "Sleepy" })
+                : this.setState({ feeling: "" });
             }}
           >
             <Text style={{ textAlign: "center", fontSize: 30 }}>😴</Text>
@@ -161,7 +218,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: mood_Worst == "1" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Bad" ? "#2A69F7" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -170,22 +227,20 @@ export default class Sleep extends Component {
               elevation: 20,
             }}
             onPress={() => {
-              mood_Worst == "1"
-                ? (mood_WorstSelected("0"),
-                  moodSelected("0"),
-                  console.log(mood_Worst),
-                  this.setState({ mood_Worst: mood_Worst }))
-                : (mood_WorstSelected("1"),
-                  moodSelected("0"),
-                  console.log(mood_Worst),
-                  this.setState({ mood_Worst: mood_Worst }));
+              this.state.feeling == ""
+                ? this.setState({ feeling: "Bad" })
+                : this.setState({ feeling: "" });
             }}
           >
             <Text style={{ textAlign: "center", fontSize: 30 }}>💩</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "column" }}>
-          <TouchableOpacity style={styles.submitButton}>
+          <TouchableOpacity style={styles.submitButton} onPress={()=>{
+            this.submitSleep();
+
+            this.props.navigation.navigate("Main")
+          }}>
             <Text style={{ textAlign: "center", color: "white", fontSize: 25 }}>
               Submit
             </Text>
@@ -211,10 +266,10 @@ export default class Sleep extends Component {
       <View>
         <LineChart
           data={{
-            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            labels: [this.state.data1.date, this.state.data2.date, this.state.data3.date, this.state.data4.date, this.state.data5.date, this.state.data6.date, this.state.data7.date],
             datasets: [
               {
-                data: [8, 7, 7, 7, 8, 7, 9],
+                data: [this.state.data1.sleepTime, this.state.data2.sleepTime, this.state.data3.sleepTime, this.state.data4.sleepTime, this.state.data5.sleepTime, this.state.data6.sleepTime, this.state.data1.sleepTime],
               },
             ],
           }}

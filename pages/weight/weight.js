@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import { LineChart } from "react-native-chart-kit";
 
 export default class Weight extends Component {
@@ -21,25 +21,15 @@ export default class Weight extends Component {
     this.state = {
       weight: "",
       hunger: "",
-      weightData: []
-    };
-  }
+      weightData: [],
+      weight1: 0,
+      weight2: 0,
+      weight3: 0,
+      weight4: 0,
+      weight5: 0,
+      weight6: 0,
 
-  componentDidMount() {
-    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/weightData.php", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((responseJson) => {
-        const weightArray = responseJson;
-        
-        this.setState({ weightData : weightArray.reverse()})
-        console.log(this.state.weightData);
-      });
+    };
   }
 
   submitWeight = () => {
@@ -56,6 +46,7 @@ export default class Weight extends Component {
         body: JSON.stringify({
           weight: this.state.weight,
           hunger: this.state.hunger,
+          time: new Date().getTime()
         }),
       });
       
@@ -65,6 +56,7 @@ export default class Weight extends Component {
   };
 
   weightForm = () => {
+    
     return (
       <View>
         <View style={{ flexDirection: "column" }}>
@@ -210,17 +202,48 @@ export default class Weight extends Component {
   };
 
   weightContent = () => {
+
+    useEffect(() => { 
+
+    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/weightData.php", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+    
+        this.setState({ weightData : responseJson.reverse()});
+        this.setState({ weight1 : this.state.weightData[0]});
+        this.setState({ weight2 : this.state.weightData[1]});
+        this.setState({ weight3 : this.state.weightData[2]});
+        this.setState({ weight4 : this.state.weightData[3]});
+        this.setState({ weight5 : this.state.weightData[4]});
+        this.setState({ weight6 : this.state.weightData[5]});
+
+                console.log(this.state.weight1);
+      });
+      
+      return () => {};
+    }, []);
+
     return (
       <View>
         <LineChart
-          data={{
+          data={
+            {
             labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
             datasets: [
               {
-                data: [85, 85.24, 84.76, 84, 83.95, 82.50],
-              },
+                data: [this.state.weight1,this.state.weight2,this.state.weight3,this.state.weight4,this.state.weight5,this.state.weight6],
+                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+                strokeWidth: 2 // optional
+              }
             ],
-          }}
+          }
+        }
           width={Dimensions.get("window").width} // from react-native
           height={230}
           yAxisSuffix="KG"
@@ -255,7 +278,7 @@ export default class Weight extends Component {
     return (
       <View>
         <View style={{ borderRadius: 20, margin: 8, backgroundColor: "blue" }}>
-          <Text style={{ color: "white", margin: 20 }}>Recommadation</Text>
+          <Text style={{ color: "white", margin: 20 }}>{this.state.weightData[1]}</Text>
         </View>
         <View style={{ borderRadius: 20, margin: 8, backgroundColor: "blue" }}>
           <Text style={{ color: "white", margin: 20 }}>Recommadation</Text>

@@ -67,13 +67,16 @@ export default class Diet extends Component {
       })
         .then((response) => response.json())
         .then((responseJson) => {
-          
+          console.log("responsejson");
           console.log(responseJson);
 
           this.setState({ dailykcal: responseJson[0].kcalsum });
           this.setState({ dailykarb: responseJson[0].carbsum });
           this.setState({ dailyprot: responseJson[0].protsum });
           this.setState({ dailyfat: responseJson[0].fatsum });
+
+          console.log("daily carb:");
+          console.log(typeof(this.state.dailykarb));
 
           this.setState({
             dailykarbPerc:
@@ -105,7 +108,8 @@ export default class Diet extends Component {
         <View>
           <TouchableOpacity
             style={styles.submitButton}
-            onPress={() => this.props.navigation.navigate("FoodSearch")}
+            onPress={() => this.props.navigation.navigate('Main', {
+              screen: 'TrainingMainNavigator'})}
           >
             <Text style={{ color: "white", fontSize: 30 }}>Add +</Text>
           </TouchableOpacity>
