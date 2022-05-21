@@ -234,7 +234,7 @@ export default class Weight extends Component {
         <LineChart
           data={
             {
-            labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+            labels: ["1", "2", "3", "4", "5", "6", "7"],
             datasets: [
               {
                 data: [this.state.weight1,this.state.weight2,this.state.weight3,this.state.weight4,this.state.weight5,this.state.weight6],

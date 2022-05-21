@@ -33,6 +33,15 @@ export default class Sleep extends Component {
       data5:"",
       data6:"",
       data7:"",
+
+      st1:"",
+      st2:"",
+      st3:"",
+      st4:"",
+      st5:"",
+      st6:"",
+      st7:"",
+
       sleepScore:""
     };
   }
@@ -99,6 +108,7 @@ export default class Sleep extends Component {
         })
         .then((response) => response.json())
         .then((responseJson) => {
+          
           this.setState({data1: responseJson[0]});
           this.setState({data2: responseJson[1]});
           this.setState({data3: responseJson[2]});
@@ -107,6 +117,17 @@ export default class Sleep extends Component {
           this.setState({data6: responseJson[5]});
           this.setState({data7: responseJson[6]});
           this.setState({sleepScore: responseJson[7]});
+
+          this.setState({st1: responseJson[0].sleepTime});  
+          this.setState({st2: responseJson[1].sleepTime});
+          this.setState({st3: responseJson[2].sleepTime});
+          this.setState({st4: responseJson[3].sleepTime});
+          this.setState({st5: responseJson[4].sleepTime});
+          this.setState({st6: responseJson[5].sleepTime});
+          this.setState({st7: responseJson[6].sleepTime});
+         
+
+
         });
 
     }, [])
@@ -266,10 +287,10 @@ export default class Sleep extends Component {
       <View>
         <LineChart
           data={{
-            labels: [this.state.data1.date, this.state.data2.date, this.state.data3.date, this.state.data4.date, this.state.data5.date, this.state.data6.date, this.state.data7.date],
+            labels: [this.state.data7.date, this.state.data6.date, this.state.data5.date, this.state.data4.date, this.state.data3.date, this.state.data2.date, this.state.data1.date],
             datasets: [
               {
-                data: [this.state.data1.sleepTime, this.state.data2.sleepTime, this.state.data3.sleepTime, this.state.data4.sleepTime, this.state.data5.sleepTime, this.state.data6.sleepTime, this.state.data1.sleepTime],
+                data: [Number(this.state.st7), Number(this.state.st6), Number(this.state.st5), Number(this.state.st4), Number(this.state.st3), Number(this.state.st2), Number(this.state.st1)],
               },
             ],
           }}
