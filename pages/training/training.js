@@ -77,20 +77,6 @@ export default function Training({navigation}) {
     );
   };
 
-  const TrainingHistory = () => {
-    return (
-      <TouchableOpacity
-        style={styles.boxcontainer}
-        onPress={() => navigation.navigate("TrainingHistoryContent")}
-      >
-        <View style={styles.boxHeader}>
-          <Text style={styles.navigatorHeader}>Training History</Text>
-        </View>
-
-      </TouchableOpacity>
-    );
-  };
-
   return (
     <SafeAreaView>
       <StatusBar hidden={true} />
@@ -99,7 +85,6 @@ export default function Training({navigation}) {
           <TodayTraining />
           <TrainingStats />
           <PlanTraining  />
-          <TrainingHistory />
         </View>
       </ScrollView>
     </SafeAreaView>

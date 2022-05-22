@@ -108,8 +108,7 @@ export default class Diet extends Component {
         <View>
           <TouchableOpacity
             style={styles.submitButton}
-            onPress={() => this.props.navigation.navigate('Main', {
-              screen: 'TrainingMainNavigator'})}
+            onPress={() => this.props.navigation.navigate("FoodSearch")}
           >
             <Text style={{ color: "white", fontSize: 30 }}>Add +</Text>
           </TouchableOpacity>
@@ -187,30 +186,7 @@ export default class Diet extends Component {
         <Text style={{ alignSelf: "center", fontSize: 30 }}>
           {this.state.dailykcal} kcal
         </Text>
-        <View
-          style={{
-            marginVertical: 20,
-            alignSelf: "center",
-            justifyContent: "center",
-            width: 400,
-            backgroundColor: "#c7c7c7",
-            height: 1.5,
-            borderRadius: 30,
-          }}
-        ></View>
-        <Text style={{ alignSelf: "center" }}>List Of Foods</Text>
-
-        <View
-          style={{
-            marginVertical: 20,
-            alignSelf: "center",
-            justifyContent: "center",
-            width: 400,
-            backgroundColor: "#c7c7c7",
-            height: 1.5,
-            borderRadius: 30,
-          }}
-        ></View>
+       
       </View>
     );
   };
@@ -230,7 +206,9 @@ export default class Diet extends Component {
               padding: 20,
             }}
             onPress={() => {
-              console.log(item.id);
+              console.log(this.state.dataSource);
+              console.log("aa");
+              console.log(item);
               this.setState({ selectedFoodName: item.foodname });
               this.setState({ selectedFoodId: item.id });
               this.setState({ selectedFoodCarb: item.foodcarbgr });
