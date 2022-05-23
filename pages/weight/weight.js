@@ -67,7 +67,7 @@ export default class Weight extends Component {
           ></TextInput>
         </View>
         <Text style={{ textAlign: "center", marginTop: 20 }}>
-          How is your hunger right now?
+          How feel your body?
         </Text>
         <View
           style={{ flexDirection: "row", margin: 20, justifyContent: "center" }}
@@ -90,7 +90,7 @@ export default class Weight extends Component {
                 : this.setState({ hunger: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>😀</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>🏃🏻‍♂️</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -111,7 +111,7 @@ export default class Weight extends Component {
                 : this.setState({ hunger: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>🙂</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>💪🏼</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -132,7 +132,7 @@ export default class Weight extends Component {
                 : this.setState({ hunger: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>😐</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>🙂</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -151,7 +151,7 @@ export default class Weight extends Component {
                 : this.setState({ hunger: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>🤤</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>😒</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -171,7 +171,7 @@ export default class Weight extends Component {
                 : this.setState({ hunger: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>🥴</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>😵</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "column" }}>

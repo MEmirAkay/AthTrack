@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Dimensions
 
 } from "react-native";
 
@@ -81,7 +82,7 @@ export default function Training({navigation}) {
     <SafeAreaView>
       <StatusBar hidden={true} />
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={{ paddingTop: 30, paddingBottom: 250,}}>
+        <View style={{ paddingTop: 30, height: Dimensions.get("window").height}}>
           <TodayTraining />
           <TrainingStats />
           <PlanTraining  />

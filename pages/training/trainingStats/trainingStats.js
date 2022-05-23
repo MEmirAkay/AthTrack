@@ -6,37 +6,36 @@ import {
   SafeAreaView,
   ScrollView,
   Dimensions,
-  Pressable,
   Alert,
   SectionList,
-  TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { Component, useEffect } from "react";
 import { LineChart } from "react-native-chart-kit";
 
+const dataJson = [
+  {name: "Squat", lifts: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130]},
+  {name: "Deadlift", lifts: [180, 185, 190, 195, 200, 205, 210, 215, 220, 225, 230]},
+  {name: "Bench Press", lifts: [80, 85, 90, 95, 100, 105, 110, 115, 120, 125, 130]},
+];
 
 const ItemView = ({ item }) => {
   return (
     <View>
-        <Text style={{ color: "white", alignSelf: "center" }}>
-          {item.foodname}
-        </Text>
+      <Text style={{ color: "black", alignSelf: "center" }}>{item.name}</Text>
       <View>
-      <LineChart
-          data={
-            {
-           
+        <LineChart
+          data={{
             datasets: [
               {
-                data: [1,2,3,4,5,6,7],
+                data: item.lifts,
                 color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-                strokeWidth: 2 // optional
-              }
+                strokeWidth: 2, // optional
+              },
             ],
-          }
-        }
+          }}
           width={Dimensions.get("window").width} // from react-native
-          height={230}
+          height={250}
           yAxisSuffix="KG"
           yAxisInterval={1} // optional, defaults to 1
           chartConfig={{
@@ -55,7 +54,7 @@ const ItemView = ({ item }) => {
               stroke: "black",
             },
           }}
-          bezier
+          
           style={{
             marginVertical: 8,
             borderRadius: 0,
@@ -66,70 +65,26 @@ const ItemView = ({ item }) => {
   );
 };
 
-
-export default class TrainingStatsContent extends Component{
+export default class TrainingStatsContent extends Component {
   render() {
-  return (
-    <SafeAreaView>
-      <StatusBar hidden={true} />
-      <Text
-        style={{
-          backgroundColor: "#131A26",
-          textAlign: "center",
-          paddingTop: 10,
-          color: "white",
-          fontFamily: "Roboto",
-          fontSize: 20,
-        }}
-      >
-        Training Stats
-      </Text>
-      <ScrollView contentContainerStyle={styles.container}>
-        <View>
-        <LineChart
-          data={
-            {
-            
-            datasets: [
-              {
-                data: [1,2,3,4,5,6,7],
-                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
-                strokeWidth: 2 // optional
-              }
-            ],
-          }
-        }
-          width={Dimensions.get("window").width} // from react-native
-          height={230}
-          yAxisSuffix="KG"
-          yAxisInterval={1} // optional, defaults to 1
-          chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#F2F2F2",
-            backgroundGradientTo: "#F2F2F2",
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-            style: {
-              borderRadius: 16,
-            },
-            propsForDots: {
-              r: "4",
-              strokeWidth: "1",
-              stroke: "black",
-            },
-          }}
-          bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 0,
-          }}
-        />
+    return (
+      <SafeAreaView>
+        <StatusBar hidden={true} />
+       
+
+        
+        <View style={styles.container} >
+          <FlatList
+            style={{ height: Dimensions.get("window").height, backgroundColor:"white"}}
+            data={dataJson}
+            renderItem={ItemView}
+            keyExtractor={(item, index) => index.toString()}
+          />
         </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
+        <ScrollView contentContainerStyle={styles.container}></ScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -137,5 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#131A26",
     alignItems: "center",
     justifyContent: "center",
+    
   },
 });

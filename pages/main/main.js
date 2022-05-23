@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  
+  Dimensions,
 } from "react-native";
 
 export default function Main({ navigation }) {
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   boxHeader: {
     fontFamily: "Roboto",
     marginVertical: 10,
-    width: 100,
+    width: Dimensions.get("window").width*0.8,
   },
   loadbarContainer: {
     flex: 1,

@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-  VirtualizedList,
+  Dimensions,
 } from "react-native";
 import { Component, useState, useEffect } from "react";
 
@@ -35,22 +35,52 @@ export default class Monday extends Component {
   }
 
   componentDidMount() {
-    fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/fetchStartDay.php", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        q: "maxid",
-      }),
-    })
+    fetch(
+      "https://mustafaemirakay.com/pages/projects/bitirme/api/fetchStartDay.php",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          q: "maxid",
+        }),
+      }
+    )
       .then((response) => response.json())
       .then((responseJson) => {
         const startDay = responseJson;
         this.setState({ exercise_ProgramStartDay: startDay });
       });
-  }
+  
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/dailyexerciselist.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            exercise_day: this.state.exerciseDay,
+            program_start_day: this.state.exercise_ProgramStartDay,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ dataSource: responseJson });
+          console.log("start");
+        
+          console.log(this.state.exerciseDay);
+          console.log(this.state.exercise_ProgramStartDay);
+        });
+    
+  
+  
+  
+    }
 
   registration_Function = () => {
     if (this.state.exerciseName == "") {
@@ -68,23 +98,26 @@ export default class Monday extends Component {
         "Please set how will you increase your rate.(If you filled rep section program will automaticely set for repetition or if you filled time section it'll set automaticely for time.)"
       );
     } else {
-      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/exercise.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          exercise_day: this.state.exerciseDay,
-          exercise_name: this.state.exerciseName,
-          exercise_set: this.state.exerciseSets,
-          exercise_rep: this.state.exerciseReps,
-          exercise_time: this.state.exerciseTime,
-          exercise_start_kg: this.state.exerciseStartWeight,
-          exercise_increase: this.state.exerciseIncrease,
-          program_start_day: this.state.exercise_ProgramStartDay,
-        }),
-      })
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/exercise.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            exercise_day: this.state.exerciseDay,
+            exercise_name: this.state.exerciseName,
+            exercise_set: this.state.exerciseSets,
+            exercise_rep: this.state.exerciseReps,
+            exercise_time: this.state.exerciseTime,
+            exercise_start_kg: this.state.exerciseStartWeight,
+            exercise_increase: this.state.exerciseIncrease,
+            program_start_day: this.state.exercise_ProgramStartDay,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({ dataSource: responseJson });
@@ -153,7 +186,30 @@ export default class Monday extends Component {
 
   MondayPage = () => {
     const [modalOpen, setModalOpen] = useState(false);
-
+    useEffect(() => {
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/dailyexerciselist.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            exercise_day: this.state.exerciseDay,
+            program_start_day: this.state.exercise_ProgramStartDay,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ dataSource: responseJson });
+          console.log("start");
+        
+          console.log(this.state.exerciseDay);
+          console.log(this.state.exercise_ProgramStartDay);
+        });
+    }, []);
     return (
       <View style={styles.container}>
         <Modal visible={modalOpen} animationType="slide" transparent={true}>
@@ -248,17 +304,19 @@ export default class Monday extends Component {
       </View>
     );
   };
+
+  
   render() {
     return (
       <SafeAreaView>
         <StatusBar hidden={true} />
         <this.MondayPage />
-          <View>
-            <FlatList
-              data={this.state.dataSource}
-              renderItem={this._renderItem}
-            />
-          </View>
+        <View>
+          <FlatList
+            data={this.state.dataSource}
+            renderItem={this._renderItem}
+          />
+        </View>
       </SafeAreaView>
     );
   }
@@ -331,9 +389,9 @@ const styles = StyleSheet.create({
     shadowColor: "#0C0B0B",
     elevation: 5,
     padding: 5,
-
+    alignSelf: "center",
     alignItems: "center",
-    width: 390,
+    width: Dimensions.get("window").width * 0.9,
     backgroundColor: "#202B3F",
   },
   exerciseListContainer: {

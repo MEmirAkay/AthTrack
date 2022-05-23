@@ -234,7 +234,7 @@ export default class Sleep extends Component {
                 : this.setState({ feeling: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>😴</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>🥱</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -253,7 +253,7 @@ export default class Sleep extends Component {
                 : this.setState({ feeling: "" });
             }}
           >
-            <Text style={{ textAlign: "center", fontSize: 30 }}>💩</Text>
+            <Text style={{ textAlign: "center", fontSize: 30 }}>😴</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "column" }}>

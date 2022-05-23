@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  Dimensions,
 } from "react-native";
 
 import { Component, useEffect } from "react";
@@ -110,35 +111,10 @@ export default class Diet extends Component {
             style={styles.submitButton}
             onPress={() => this.props.navigation.navigate("FoodSearch")}
           >
-            <Text style={{ color: "white", fontSize: 30 }}>Add +</Text>
+            <Text style={{ color: "white", fontSize: 20, alignSelf:"center" }}>Add +</Text>
           </TouchableOpacity>
         </View>
 
-        <View
-          style={{
-            marginVertical: 20,
-            alignSelf: "center",
-            justifyContent: "center",
-            width: 400,
-            backgroundColor: "#c7c7c7",
-            height: 1.5,
-            borderRadius: 30,
-          }}
-        ></View>
-        <View>
-          <Text style={{ alignSelf: "center" }}>{this.state.date}</Text>
-        </View>
-        <View
-          style={{
-            marginVertical: 20,
-            alignSelf: "center",
-            justifyContent: "center",
-            width: 400,
-            backgroundColor: "#c7c7c7",
-            height: 1.5,
-            borderRadius: 30,
-          }}
-        ></View>
         <View style={{ alignSelf: "center" }}>
           <PieChart
             data={[
@@ -164,8 +140,8 @@ export default class Diet extends Component {
                 legendFontSize: 15,
               },
             ]}
-            width={450}
-            height={220}
+            width={Dimensions.get("window").width}
+            height={Dimensions.get("window").height*0.25}
             chartConfig={{
               backgroundGradientFrom: "#1E2923",
               backgroundGradientFromOpacity: 0,
@@ -183,8 +159,8 @@ export default class Diet extends Component {
             absolute
           />
         </View>
-        <Text style={{ alignSelf: "center", fontSize: 30 }}>
-          {this.state.dailykcal} kcal
+        <Text style={{ alignSelf: "center", fontSize: 20 }}>
+      {this.state.dailykcal} kcal
         </Text>
        
       </View>
@@ -228,7 +204,7 @@ export default class Diet extends Component {
     return (
       <View>
         <FlatList
-        style={{height:100}}
+        style={{height:Dimensions.get("window").height*0.58}}
         data={this.state.dataSource} renderItem={ItemView} />
       </View>
     );
@@ -236,7 +212,7 @@ export default class Diet extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView>
         <StatusBar hidden={true} />
         <ScrollView>
           <Text
@@ -334,7 +310,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: 300,
+    width: Dimensions.get("window").width*0.9,
     padding: 10,
     elevation: 20,
     backgroundColor: "blue",
