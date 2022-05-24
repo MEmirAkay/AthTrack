@@ -229,7 +229,7 @@ export default class Wednesday extends Component {
             fontSize: 50,
           }}
         >
-          Monday
+          Wednesday
         </Text>
 
         <TouchableOpacity

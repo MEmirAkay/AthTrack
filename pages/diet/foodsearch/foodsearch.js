@@ -10,6 +10,7 @@ import {
   TextInput,
   Modal,
   FlatList,
+  Dimensions,
 } from "react-native";
 
 import { Component, useEffect, useState } from "react";
@@ -224,29 +225,19 @@ export default class FoodSearch extends Component {
           </View>
         </Modal>
 
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ flexDirection: "column", paddingTop:20, }}>
           <TouchableOpacity
             style={styles.submitButton}
             onPress={() => {
               setModalOpen(true);
             }}
           >
-            <Text style={{ color: "white", fontSize: 20, alignSelf: "center" }}>
+            <Text style={{ color: "white", fontSize: 30, alignSelf: "center"}}>
               Add New Food +
             </Text>
           </TouchableOpacity>
 
-          <View
-            style={{
-              marginVertical: 20,
-              alignSelf: "center",
-              justifyContent: "center",
-              width: 400,
-              backgroundColor: "#c7c7c7",
-              height: 1.5,
-              borderRadius: 30,
-            }}
-          ></View>
+          
         </View>
       </View>
     );
@@ -295,7 +286,7 @@ export default class FoodSearch extends Component {
       fetchPosts();
       const d = new Date();
       const year = d.getFullYear();
-      const month = d.getMonth() +1;
+      const month = d.getMonth() + 1;
       const day = d.getDate();
 
       const Today = day + "-" + month + "-" + year;
@@ -416,26 +407,16 @@ export default class FoodSearch extends Component {
   };
 
   render() {
-
-    
     return (
-      <SafeAreaView style={styles.safe}>
-        <StatusBar hidden={true} />
-        <ScrollView>
-          <Text
-            style={{
-              textAlign: "center",
-              color: "black",
-              fontFamily: "Roboto",
-              fontSize: 50,
-            }}
-          >
-            Diet
-          </Text>
-          <this.dietForm />
-        </ScrollView>
+      <SafeAreaView>
+        <View style={{backgroundColor:"#5AC994",height:Dimensions.get("window").height}}>
+          <StatusBar hidden={true} />
+          <ScrollView>
+            <this.dietForm />
+          </ScrollView>
 
-        <this.dietRecommended />
+          <this.dietRecommended />
+        </View>
       </SafeAreaView>
     );
   }
@@ -443,7 +424,7 @@ export default class FoodSearch extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#5AC994",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -505,7 +486,7 @@ const styles = StyleSheet.create({
   },
   textInput: {
     borderRadius: 20,
-    padding: 10,
+    padding: 20,
     marginVertical: 10,
     marginHorizontal: 20,
     justifyContent: "center",
@@ -518,7 +499,7 @@ const styles = StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: 300,
+    width: Dimensions.get("window").width*0.95,
     padding: 10,
     elevation: 20,
     backgroundColor: "blue",

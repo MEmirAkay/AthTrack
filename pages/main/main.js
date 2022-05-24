@@ -1,4 +1,5 @@
 import { StatusBar } from "expo-status-bar";
+import { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,451 +10,157 @@ import {
   Dimensions,
 } from "react-native";
 
-export default function Main({ navigation }) {
-  const TrainingBox = () => {
+export default class Main extends Component {
+  TrainingBox = () => {
     return (
       <TouchableOpacity
-        style={styles.boxcontainer}
-        onPress={() => navigation.navigate("TrainingMainNavigator")}
+        style={{
+          marginTop: 0,
+          borderRadius: 23,
+          elevation: 10,
+          paddingTop: 20,
+          height: 100,
+          marginBottom: 50,
+          alignItems: "center",
+          width: Dimensions.get("window").width * 0.9,
+          backgroundColor: "#6B9FED",
+        }}
+        onPress={() => this.props.navigation.navigate("TrainingMainNavigator")}
       >
         <View style={styles.boxHeader}>
           <Text
             style={{
               fontFamily: "Roboto",
-              fontSize: 25,
+              fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
               color: "#F9F9F9",
             }}
           >
-            Training
+            Training 🏋🏻
           </Text>
-        </View>
-        <View>
-          <View style={styles.dateBox}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 40,
-                color: "#F9F9F9",
-                alignContent: "center",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-            >
-              Week 2 Day 2
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainer}>
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Volume
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Intensty
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Success
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
         </View>
       </TouchableOpacity>
     );
   };
-  const DietBox = () => {
+  DietBox = () => {
     return (
       <TouchableOpacity
-        style={styles.boxcontainer}
-        onPress={() => navigation.navigate("DietNavigator")}
+        style={{
+          marginTop: 0,
+          borderRadius: 23,
+          elevation: 10,
+          paddingTop: 20,
+          height: 100,
+          marginBottom: 50,
+          alignItems: "center",
+          width: Dimensions.get("window").width * 0.9,
+          backgroundColor: "#5AC994",
+        }}
+        onPress={() => this.props.navigation.navigate("DietNavigator")}
       >
         <View style={styles.boxHeader}>
           <Text
             style={{
               fontFamily: "Roboto",
-              fontSize: 25,
+              fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
               color: "#F9F9F9",
             }}
           >
-            Diet
+            Diet 🍏
           </Text>
-        </View>
-        <View>
-          <View style={styles.dateBox}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 40,
-                color: "#F9F9F9",
-                alignContent: "center",
-                justifyContent: "center",
-                textAlign: "center",
-
-              }}
-            >
-              Week 2 Day 2
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainer}>
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Volume
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Intensty
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Success
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
         </View>
       </TouchableOpacity>
     );
   };
-  const SleppBox = () => {
+  SleppBox = () => {
     return (
       <TouchableOpacity
-        style={styles.boxcontainer}
-        onPress={() => navigation.navigate("Sleep")}
+        style={{
+          marginTop: 0,
+          borderRadius: 23,
+          elevation: 10,
+          paddingTop: 20,
+          height: 100,
+          marginBottom: 50,
+          alignItems: "center",
+          width: Dimensions.get("window").width * 0.9,
+          backgroundColor: "#FD76CB",
+        }}
+        onPress={() => this.props.navigation.navigate("Sleep")}
       >
         <View style={styles.boxHeader}>
           <Text
             style={{
               fontFamily: "Roboto",
-              fontSize: 25,
+              fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
               color: "#F9F9F9",
-              
             }}
           >
-            Sleep
+            Sleep 😴
           </Text>
-        </View>
-        <View>
-          <View style={styles.dateBox}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 40,
-                color: "#F9F9F9",
-                alignContent: "center",
-                justifyContent: "center",
-                textAlign: "center",
-                
-              }}
-            >
-              Week 2 Day 2
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainer}>
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Volume
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Intensty
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Success
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
         </View>
       </TouchableOpacity>
     );
   };
-
-  const WeightBox = () => {
+  WeightBox = () => {
     return (
       <TouchableOpacity
-        style={styles.boxcontainer}
-        onPress={() => navigation.navigate("Weight")}
+        style={{
+          marginTop: 0,
+          borderRadius: 23,
+          elevation: 10,
+          paddingTop: 20,
+          height: 100,
+          marginBottom: 50,
+          alignItems: "center",
+          width: Dimensions.get("window").width * 0.9,
+          backgroundColor: "#f77040",
+        }}
+        onPress={() => this.props.navigation.navigate("Weight")}
       >
         <View style={styles.boxHeader}>
           <Text
             style={{
               fontFamily: "Roboto",
-              fontSize: 25,
+              fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
               color: "#F9F9F9",
-              
             }}
           >
-            Weight
+            Weight 🧍‍♂️
           </Text>
-        </View>
-        <View>
-          <View style={styles.dateBox}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 40,
-                color: "#F9F9F9",
-                alignContent: "center",
-                justifyContent: "center",
-                textAlign: "center",
-              }}
-            >
-              Week 2 Day 2
-            </Text>
-          </View>
-        </View>
-        <View style={styles.statContainer}>
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Volume
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Intensty
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text
-              style={{
-                fontFamily: "Roboto",
-                fontSize: 23,
-                flex: 1,
-                color: "#F9F9F9",
-                paddingLeft: 20,
-              }}
-            >
-              Success
-            </Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
         </View>
       </TouchableOpacity>
     );
   };
-
-  return (
-    <SafeAreaView style={styles.safe}>
-      <StatusBar hidden={true} />
-      <ScrollView contentContainerStyle={styles.container}>
-        <View style={{paddingTop: 30,}}>
-          <TrainingBox />
-          <DietBox />
-          <SleppBox />
-          <WeightBox />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+  render() {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <StatusBar hidden={true} />
+        <ScrollView contentContainerStyle={styles.container}>
+          <View style={{ paddingTop: 30 }}>
+            <this.TrainingBox />
+            <this.DietBox />
+            <this.SleppBox />
+            <this.WeightBox />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#c1c9c9",
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -462,54 +169,25 @@ const styles = StyleSheet.create({
     alignContent: "center",
     width: 175,
     height: 175,
-    backgroundColor: "#262159",
+    backgroundColor: "#303642",
     borderRadius: 90,
-    shadowColor: "#000000",
     elevation: 5,
   },
-  statContainer: {
-    flexDirection: "column",
-  },
-  statBar: {
-    marginTop: 10,
-    width: 355,
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
+
   boxcontainer: {
     marginTop: 0,
     borderRadius: 23,
-    shadowColor: "#0C0B0B",
     elevation: 20,
     paddingTop: 20,
-    height: 400,
+    height: 100,
     marginBottom: 15,
     alignItems: "center",
-    width: "100%",
-    backgroundColor: "#202B3F",
+    width: Dimensions.get("window").width * 0.9,
+    backgroundColor: "#F95F29",
   },
   boxHeader: {
     fontFamily: "Roboto",
     marginVertical: 10,
-    width: Dimensions.get("window").width*0.8,
-  },
-  loadbarContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  loadbarMain: {
-    flexDirection: "row",
-
-    backgroundColor: "#444C59",
-    width: 150,
-    height: 25,
-    borderRadius: 20,
-  },
-  ladbarLoad: {
-    borderRadius: 20,
-    backgroundColor: "#35C09F",
-    width: 70,
-    shadowColor: "#000000",
-    elevation: 6,
+    width: Dimensions.get("window").width,
   },
 });

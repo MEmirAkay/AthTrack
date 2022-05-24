@@ -33,39 +33,48 @@ export default class Diet extends Component {
   }
 
   dietForm = () => {
-    useEffect(() => { 
-      
-      const Today = new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear();
-      this.setState({date : Today});
+    useEffect(() => {
+      const Today =
+        new Date().getDate() +
+        "-" +
+        (new Date().getMonth() + 1) +
+        "-" +
+        new Date().getFullYear();
+      this.setState({ date: Today });
       console.log(Today);
 
-      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysFoods.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date: Today,
-        }),
-      })
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/todaysFoods.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            date: Today,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({ dataSource: responseJson });
           console.log(responseJson);
-          
         });
 
-      fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/todaysMacronutrients.php", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          date: Today,
-        }),
-      })
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/todaysMacronutrients.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            date: Today,
+          }),
+        }
+      )
         .then((response) => response.json())
         .then((responseJson) => {
           console.log("responsejson");
@@ -77,7 +86,7 @@ export default class Diet extends Component {
           this.setState({ dailyfat: responseJson[0].fatsum });
 
           console.log("daily carb:");
-          console.log(typeof(this.state.dailykarb));
+          console.log(typeof this.state.dailykarb);
 
           this.setState({
             dailykarbPerc:
@@ -111,7 +120,9 @@ export default class Diet extends Component {
             style={styles.submitButton}
             onPress={() => this.props.navigation.navigate("FoodSearch")}
           >
-            <Text style={{ color: "white", fontSize: 20, alignSelf:"center" }}>Add +</Text>
+            <Text style={{ color: "white", fontSize: 20, alignSelf: "center" }}>
+              Add +
+            </Text>
           </TouchableOpacity>
         </View>
 
@@ -120,28 +131,34 @@ export default class Diet extends Component {
             data={[
               {
                 name: "Carbonhydrate",
-                population: this.state.dailykarbPerc ? Math.round(this.state.dailykarbPerc) : 0,
-                color: "red",
+                population: this.state.dailykarbPerc
+                  ? Math.round(this.state.dailykarbPerc)
+                  : 0,
+                color: "#c21010",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
               },
               {
                 name: "Protein",
-                population: this.state.dailyprotPerc ? Math.round(this.state.dailyprotPerc) : 0,
-                color: "blue",
+                population: this.state.dailyprotPerc
+                  ? Math.round(this.state.dailyprotPerc)
+                  : 0,
+                color: "#2110c2",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
               },
               {
                 name: "Fat",
-                population: this.state.dailyfatPerc ? Math.round(this.state.dailyfatPerc) : 0,
-                color: "yellow",
+                population: this.state.dailyfatPerc
+                  ? Math.round(this.state.dailyfatPerc)
+                  : 0,
+                color: "#ccf516",
                 legendFontColor: "#7F7F7F",
                 legendFontSize: 15,
               },
             ]}
             width={Dimensions.get("window").width}
-            height={Dimensions.get("window").height*0.25}
+            height={Dimensions.get("window").height * 0.25}
             chartConfig={{
               backgroundGradientFrom: "#1E2923",
               backgroundGradientFromOpacity: 0,
@@ -160,17 +177,13 @@ export default class Diet extends Component {
           />
         </View>
         <Text style={{ alignSelf: "center", fontSize: 20 }}>
-      {this.state.dailykcal} kcal
+          {this.state.dailykcal} kcal
         </Text>
-       
       </View>
     );
   };
 
-
-
   dietRecommended = () => {
-
     const ItemView = ({ item }) => {
       return (
         <View>
@@ -178,7 +191,7 @@ export default class Diet extends Component {
             style={{
               borderRadius: 20,
               margin: 8,
-              backgroundColor: "blue",
+              backgroundColor: "#2ae88d",
               padding: 20,
             }}
             onPress={() => {
@@ -204,8 +217,10 @@ export default class Diet extends Component {
     return (
       <View>
         <FlatList
-        style={{height:Dimensions.get("window").height*0.58}}
-        data={this.state.dataSource} renderItem={ItemView} />
+          style={{ height: Dimensions.get("window").height * 0.58 }}
+          data={this.state.dataSource}
+          renderItem={ItemView}
+        />
       </View>
     );
   };
@@ -214,21 +229,14 @@ export default class Diet extends Component {
     return (
       <SafeAreaView>
         <StatusBar hidden={true} />
-        <ScrollView>
-          <Text
-            style={{
-              textAlign: "center",
-              color: "black",
-              fontFamily: "Roboto",
-              fontSize: 50,
-            }}>
-            Diet
-          </Text>
+        <View style={styles.container}>
+          <ScrollView>
+            
 
-          <this.dietForm />
-        </ScrollView>
-
-        <this.dietRecommended />
+            <this.dietForm />
+          </ScrollView>
+          <this.dietRecommended />
+        </View>
       </SafeAreaView>
     );
   }
@@ -236,83 +244,21 @@ export default class Diet extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#5AC994",
+    paddingTop:20,
+    width:Dimensions.get("window").width,
+    height:Dimensions.get("window").height,
   },
-  dateBox: {
-    justifyContent: "center",
-    alignContent: "center",
-    width: 175,
-    height: 175,
-    backgroundColor: "#262159",
-    borderRadius: 90,
-    shadowColor: "#000000",
-    elevation: 5,
-  },
-  statContainer: {
-    flexDirection: "column",
-  },
-  statBar: {
-    marginTop: 10,
-    width: 355,
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
-  boxcontainer: {
-    marginTop: 0,
-    borderRadius: 23,
-    shadowColor: "#0C0B0B",
-    elevation: 20,
-    paddingTop: 20,
-    height: 400,
-    marginBottom: 15,
-    alignItems: "center",
-    width: "90%",
-    backgroundColor: "#202B3F",
-  },
-  boxHeader: {
-    fontFamily: "Roboto",
-    marginVertical: 10,
-    width: 100,
-  },
-  loadbarContainer: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  loadbarMain: {
-    flexDirection: "row",
 
-    backgroundColor: "#444C59",
-    width: 150,
-    height: 25,
-    borderRadius: 20,
-  },
-  ladbarLoad: {
-    borderRadius: 20,
-    backgroundColor: "#35C09F",
-    width: 70,
-    shadowColor: "#000000",
-    elevation: 6,
-  },
-  textInput: {
-    borderRadius: 20,
-    padding: 10,
-    marginVertical: 10,
-    marginHorizontal: 20,
-    justifyContent: "center",
-    backgroundColor: "#c7c7c7",
-    elevation: 20,
-  },
   submitButton: {
     borderRadius: 20,
     textAlign: "center",
     alignContent: "center",
     justifyContent: "center",
     alignSelf: "center",
-    width: Dimensions.get("window").width*0.9,
+    width: Dimensions.get("window").width * 0.9,
     padding: 10,
-    elevation: 20,
-    backgroundColor: "blue",
+    elevation: 30,
+    backgroundColor: "#2ae88d",
   },
 });

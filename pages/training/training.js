@@ -94,7 +94,7 @@ export default function Training({navigation}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#6B9FED",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     alignItems: "center",
     width: 390,
-    backgroundColor: "#202B3F",
+    backgroundColor: "#2d6ac4",
   },
   boxHeader: {
     fontFamily: "Roboto",
