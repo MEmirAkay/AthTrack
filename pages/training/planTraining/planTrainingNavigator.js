@@ -8,7 +8,7 @@ import Saturday from './planTrainingIncludes/days/saturday';
 import Sunday from './planTrainingIncludes/days/sunday';
 import ExercisePlanTraining from './planTrainingIncludes/exercises';
 import HeaderPlanTraining from './planTrainingIncludes/headerTraining';
-import PreviewPlanTraining from './planTrainingIncludes/previewTraning';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,7 @@ export default function PlanTrainingNavigator() {
           <Stack.Screen name="Sunday" component={Sunday} options={{header: () => null}} />
           
           <Stack.Screen name="ExercisePlanTraining" component={ExercisePlanTraining} options={{header: () => null}} />
-          <Stack.Screen name="PreviewPlanTraining" component={PreviewPlanTraining} options={{header: () => null}} />
+    
         </Stack.Navigator>
       
       

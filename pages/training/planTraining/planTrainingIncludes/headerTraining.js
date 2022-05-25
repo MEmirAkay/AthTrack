@@ -84,7 +84,7 @@ export default class HeaderPlanTraining extends Component {
         [selected]: {
           selected: true,
           disableTouchEvent: true,
-          selectedColor: "#2A69F7",
+          selectedColor: "#2d6ac4",
           selectedTextColor: "white",
         },
       };
@@ -349,7 +349,7 @@ export default class HeaderPlanTraining extends Component {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: "#131A26",
+    backgroundColor: "#6B9FED",
     alignItems: "center",
     justifyContent: "center",
   },

@@ -163,7 +163,8 @@ export default class ExercisePlanTraining extends Component {
 
         <TouchableOpacity
           style={styles.SubmitButton}
-          onPress={() => this.props.navigation.navigate("PreviewPlanTraining")}
+          onPress={() => this.props.navigation.navigate('Main', {
+            screen: 'TrainingMainNavigator'})}
         >
           <View>
             <Text
@@ -185,7 +186,7 @@ export default class ExercisePlanTraining extends Component {
 }
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#6B9FED",
     alignItems: "center",
     justifyContent: "center",
     padding:20,
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     alignItems: "center",
     width: 390,
-    backgroundColor: "#202B3F",
+    backgroundColor: "#2A69F7",
     
   },
   DaysBoxText: {

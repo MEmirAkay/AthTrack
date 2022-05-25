@@ -461,7 +461,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#202B3F",
   },
   boxHeader: {
-    fontFamily: "Roboto",
+    
     marginVertical: 10,
     width: 100,
   },

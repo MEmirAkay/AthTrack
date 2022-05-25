@@ -24,19 +24,6 @@ export default function Training({navigation}) {
         <View style={styles.statContainer}>
           <View style={styles.statBar}>
             <Text style={styles.statTexts}>Volume</Text>
-
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-
-          <View style={styles.statBar}>
-            <Text style={styles.statTexts}>Intensty</Text>
-
             <View style={styles.loadbarContainer}>
               <View style={styles.loadbarMain}>
                 <View style={styles.ladbarLoad}>
@@ -100,7 +87,7 @@ const styles = StyleSheet.create({
   },
 
   navigatorHeader: {
-    fontFamily: "Roboto",
+    
     fontSize: 30,
     textAlign: "center",
     textAlignVertical: "center",
@@ -109,7 +96,7 @@ const styles = StyleSheet.create({
   },
 
   statTexts: {
-    fontFamily: "Roboto",
+   
     fontSize: 23,
     flex: 1,
     color: "#F9F9F9",
@@ -138,7 +125,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#2d6ac4",
   },
   boxHeader: {
-    fontFamily: "Roboto",
+    
     justifyContent: 'center',
     alignItems: 'center',
     marginVertical: 10,

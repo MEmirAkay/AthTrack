@@ -281,7 +281,7 @@ export default class Monday extends Component {
           style={{
             textAlign: "center",
             color: "white",
-            fontFamily: "Roboto",
+           
             fontSize: 50,
           }}
         >
@@ -311,7 +311,7 @@ export default class Monday extends Component {
       <SafeAreaView>
         <StatusBar hidden={true} />
         <this.MondayPage />
-        <View>
+        <View style={{backgroundColor:"#6B9FED",width:Dimensions.get("window").width,height:Dimensions.get("window").height}}>
           <FlatList
             data={this.state.dataSource}
             renderItem={this._renderItem}
@@ -324,7 +324,7 @@ export default class Monday extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#2A69F7",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     top: 120,
-    backgroundColor: "#262a45",
+    backgroundColor: "#2A69F7",
     borderRadius: 20,
     elevation: 10,
     alignSelf: "center",
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     width: Dimensions.get("window").width * 0.9,
-    backgroundColor: "#202B3F",
+    backgroundColor: "#2A69F7",
   },
   exerciseListContainer: {
     justifyContent: "center",

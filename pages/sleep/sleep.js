@@ -127,7 +127,6 @@ export default class Sleep extends Component {
           this.setState({st7: responseJson[6].sleepTime});
          
 
-
         });
 
     }, [])
@@ -161,7 +160,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: this.state.feeling == "Perfect" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Perfect" ? "#FC1CA9" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -181,7 +180,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: this.state.feeling == "Good" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Good" ? "#FC1CA9" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -201,7 +200,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: this.state.feeling == "Balanced" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Balanced" ? "#FC1CA9" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -220,7 +219,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: this.state.feeling == "Sleepy" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Sleepy" ? "#FC1CA9" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -239,7 +238,7 @@ export default class Sleep extends Component {
           <TouchableOpacity
             style={{
               margin: 4,
-              backgroundColor: this.state.feeling == "Bad" ? "#2A69F7" : "white",
+              backgroundColor: this.state.feeling == "Bad" ? "#FC1CA9" : "white",
               width: 50,
               height: 50,
               borderRadius: 20,
@@ -262,29 +261,19 @@ export default class Sleep extends Component {
 
             this.props.navigation.navigate("Main")
           }}>
-            <Text style={{ textAlign: "center", color: "white", fontSize: 25 }}>
+            <Text style={{ textAlign: "center", fontSize: 25, color:'white'}}>
               Submit
             </Text>
           </TouchableOpacity>
         </View>
-        <View
-          style={{
-            marginVertical: 20,
-            alignSelf: "center",
-            justifyContent: "center",
-            width: 400,
-            backgroundColor: "#c7c7c7",
-            height: 1.5,
-            borderRadius: 30,
-          }}
-        ></View>
+        
       </View>
     );
   };
 
   sleepContent = () => {
     return (
-      <View>
+      <View style={{borderRadius:20,alignItems:'center'}}>
         <LineChart
           data={{
             labels: [this.state.data7.date, this.state.data6.date, this.state.data5.date, this.state.data4.date, this.state.data3.date, this.state.data2.date, this.state.data1.date],
@@ -294,7 +283,7 @@ export default class Sleep extends Component {
               },
             ],
           }}
-          width={Dimensions.get("window").width} // from react-native
+          width={Dimensions.get("window").width*0.9} // from react-native
           height={230}
           yAxisSuffix="Hour"
           yAxisInterval={1} // optional, defaults to 1
@@ -302,7 +291,7 @@ export default class Sleep extends Component {
             backgroundColor: "#e26a00",
             backgroundGradientFrom: "#F2F2F2",
             backgroundGradientTo: "#F2F2F2",
-            decimalPlaces: 2, // optional, defaults to 2dp
+            decimalPlaces: 0, // optional, defaults to 2dp
             color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
             style: {
@@ -316,49 +305,27 @@ export default class Sleep extends Component {
           }}
           bezier
           style={{
-            marginVertical: 8,
-            borderRadius: 0,
+            width:Dimensions.get("window").width*0.9,
+            borderRadius:20,
+            elevation:20,
+            
           }}
         />
       </View>
     );
   };
 
-  sleepRecommended = () => {
-    return (
-      <View>
-        <View style={{ borderRadius: 20, margin: 8, backgroundColor: "blue" }}>
-          <Text style={{ color: "white", margin: 20 }}>Recommadation</Text>
-        </View>
-        <View style={{ borderRadius: 20, margin: 8, backgroundColor: "blue" }}>
-          <Text style={{ color: "white", margin: 20 }}>Recommadation</Text>
-        </View>
-        <View style={{ borderRadius: 20, margin: 8, backgroundColor: "blue" }}>
-          <Text style={{ color: "white", margin: 20 }}>Recommadation</Text>
-        </View>
-        
-      </View>
-    );
-  };
+
 
   render() {
     return (
-      <SafeAreaView style={styles.safe}>
+      <SafeAreaView>
         <StatusBar hidden={true} />
         <ScrollView>
-          <Text
-            style={{
-              textAlign: "center",
-              color: "black",
-              fontFamily: "Roboto",
-              fontSize: 50,
-            }}
-          >
-            Sleep
-          </Text>
-          <this.sleepForm />
+          <View style={{backgroundColor:"#FD76CB", height:Dimensions.get("window").height,width:Dimensions.get("window").width}}>
+            <this.sleepForm />
           <this.sleepContent />
-          <this.sleepRecommended />
+          </View>        
         </ScrollView>
       </SafeAreaView>
     );
@@ -367,7 +334,7 @@ export default class Sleep extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#FD76CB",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -403,7 +370,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#202B3F",
   },
   boxHeader: {
-    fontFamily: "Roboto",
+    
     marginVertical: 10,
     width: 100,
   },
@@ -432,10 +399,11 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     justifyContent: "center",
-    backgroundColor: "#c7c7c7",
+    backgroundColor: "white",
     elevation: 20,
   },
   submitButton: {
+    marginBottom:20,
     borderRadius: 20,
     textAlign: "center",
     alignContent: "center",
@@ -443,6 +411,6 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     width: 300,
     padding: 10,
-    backgroundColor: "blue",
+    backgroundColor: "#FC1CA9",
   },
 });

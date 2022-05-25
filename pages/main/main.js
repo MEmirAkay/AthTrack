@@ -30,7 +30,7 @@ export default class Main extends Component {
         <View style={styles.boxHeader}>
           <Text
             style={{
-              fontFamily: "Roboto",
+              
               fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
@@ -62,7 +62,7 @@ export default class Main extends Component {
         <View style={styles.boxHeader}>
           <Text
             style={{
-              fontFamily: "Roboto",
+              
               fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
@@ -94,7 +94,7 @@ export default class Main extends Component {
         <View style={styles.boxHeader}>
           <Text
             style={{
-              fontFamily: "Roboto",
+              
               fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
@@ -126,7 +126,7 @@ export default class Main extends Component {
         <View style={styles.boxHeader}>
           <Text
             style={{
-              fontFamily: "Roboto",
+              
               fontSize: 35,
               textAlign: "center",
               textAlignVertical: "center",
@@ -158,7 +158,7 @@ export default class Main extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#c1c9c9",
+    backgroundColor: "white",
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
     alignItems: "center",
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#F95F29",
   },
   boxHeader: {
-    fontFamily: "Roboto",
+   
     marginVertical: 10,
     width: Dimensions.get("window").width,
   },

@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   TextInput,
   FlatList,
-  VirtualizedList,
+  Dimensions,
 } from "react-native";
 import { Component, useState, useEffect } from "react";
 
@@ -225,7 +225,7 @@ export default class Saturday extends Component {
           style={{
             textAlign: "center",
             color: "white",
-            fontFamily: "Roboto",
+            
             fontSize: 50,
           }}
         >
@@ -266,7 +266,7 @@ export default class Saturday extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#131A26",
+    backgroundColor: "#2A69F7",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     top: 120,
-    backgroundColor: "#262a45",
+    backgroundColor: "#2A69F7",
     borderRadius: 20,
     elevation: 10,
     alignSelf: "center",
@@ -331,10 +331,10 @@ const styles = StyleSheet.create({
     shadowColor: "#0C0B0B",
     elevation: 5,
     padding: 5,
-
+    alignSelf: "center",
     alignItems: "center",
-    width: 390,
-    backgroundColor: "#202B3F",
+    width: Dimensions.get("window").width * 0.9,
+    backgroundColor: "#2A69F7",
   },
   exerciseListContainer: {
     justifyContent: "center",

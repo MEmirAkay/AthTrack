@@ -5,10 +5,7 @@ import {
   View,
   SafeAreaView,
   ScrollView,
-  Pressable,
-  Alert,
-  SectionList,
-  TouchableOpacity,
+
 } from "react-native";
 
 export default function PlanTrainingContent() {
@@ -22,7 +19,7 @@ export default function PlanTrainingContent() {
             textAlign: "center",
             paddingTop: 300,
             color: "white",
-            fontFamily: "Roboto",
+            
             fontSize: 100,
           }}
         >
