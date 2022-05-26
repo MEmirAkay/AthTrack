@@ -54,7 +54,7 @@ export default class ExercisePlanTraining extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor:"#6B9FED" }}>
         <StatusBar hidden={true} />
         <ScrollView contentContainerStyle={styles.container}>
           <View style={{ paddingTop: 30, paddingBottom: 550 }}>

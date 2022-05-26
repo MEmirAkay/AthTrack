@@ -114,7 +114,7 @@ export default class Diet extends Component {
       return () => {};
     }, []);
     return (
-      <View>
+      <View style={{paddingTop:30}}>
         <View>
           <TouchableOpacity
             style={styles.submitButton}
@@ -227,7 +227,7 @@ export default class Diet extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
         <View style={styles.container}>
           <ScrollView>
@@ -237,7 +237,7 @@ export default class Diet extends Component {
           </ScrollView>
           <this.dietRecommended />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }

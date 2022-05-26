@@ -10,7 +10,7 @@ import {
 
 export default function PlanTrainingContent() {
   return (
-    <SafeAreaView>
+    <View>
       <StatusBar hidden={true} />
 
       <ScrollView contentContainerStyle={styles.container}>
@@ -26,7 +26,7 @@ export default function PlanTrainingContent() {
           Plan Training
         </Text>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

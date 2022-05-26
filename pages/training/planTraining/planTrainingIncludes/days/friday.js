@@ -250,7 +250,7 @@ export default class Friday extends Component {
   };
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
         <this.MondayPage />
           <View>
@@ -259,7 +259,7 @@ export default class Friday extends Component {
               renderItem={this._renderItem}
             />
           </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }

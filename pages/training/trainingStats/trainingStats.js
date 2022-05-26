@@ -94,7 +94,7 @@ const ItemView = ({ item }) => {
 export default class TrainingStatsContent extends Component {
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
 
         <View style={styles.container}>
@@ -109,7 +109,7 @@ export default class TrainingStatsContent extends Component {
           />
         </View>
         <ScrollView contentContainerStyle={styles.container}></ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }

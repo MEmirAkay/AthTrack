@@ -225,7 +225,7 @@ export default class FoodSearch extends Component {
           </View>
         </Modal>
 
-        <View style={{ flexDirection: "column", paddingTop:20, }}>
+        <View style={{ flexDirection: "column", paddingTop:40, }}>
           <TouchableOpacity
             style={styles.submitButton}
             onPress={() => {
@@ -335,7 +335,7 @@ export default class FoodSearch extends Component {
             style={{
               borderRadius: 20,
               margin: 8,
-              backgroundColor: "blue",
+              backgroundColor: "#2ae88d",
               padding: 20,
             }}
             onPress={() => {
@@ -408,16 +408,16 @@ export default class FoodSearch extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <View style={{backgroundColor:"#5AC994",height:Dimensions.get("window").height}}>
           <StatusBar hidden={true} />
-          <ScrollView>
+          
             <this.dietForm />
-          </ScrollView>
+          
 
           <this.dietRecommended />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
@@ -490,7 +490,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     marginHorizontal: 20,
     justifyContent: "center",
-    backgroundColor: "#c7c7c7",
+    backgroundColor: "white",
     elevation: 20,
   },
   submitButton: {
@@ -502,7 +502,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width*0.95,
     padding: 10,
     elevation: 20,
-    backgroundColor: "blue",
+    backgroundColor: "#2ae88d",
   },
   modalContainer: {
     flexDirection: "column",

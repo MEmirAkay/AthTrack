@@ -15,7 +15,7 @@ export default class TodaysTrainingContent extends Component {
     const exerciseData = [
       {
         exerciseId:1,
-        exerciseName: "Squat",
+        exerciseName: Dimensions.get("window").width*0.16,
         exerciseSet: "3",
         exerciseRep: "5",
         exerciseKg: "100",
@@ -23,7 +23,7 @@ export default class TodaysTrainingContent extends Component {
       },
       {
         exerciseId:2,
-        exerciseName: "Deadlift",
+        exerciseName: Dimensions.get("window").height,
         exerciseSet: "3",
         exerciseRep: "5",
         exerciseKg: "100",
@@ -163,7 +163,7 @@ export default class TodaysTrainingContent extends Component {
             </View>
             <View style={{flexDirection:"row"}}>
                   <TouchableOpacity style={{
-                    width:70,height:70,marginTop:5,marginLeft:5,backgroundColor:"#E34C4C",justifyContent:"center",alignItems:"center",borderRadius:20,elevation:10
+                    width:Dimensions.get("window").width*0.15,height:Dimensions.get("window").width*0.16,marginTop:5,marginLeft:5,backgroundColor:"#E34C4C",justifyContent:"center",alignItems:"center",borderRadius:20,elevation:10
 
                   }}>
                     <Text style={{fontSize:20}}>
@@ -171,7 +171,7 @@ export default class TodaysTrainingContent extends Component {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={{
-                    width:70,height:70,marginTop:5, marginLeft:5,backgroundColor:"#4CE39B",justifyContent:"center",alignItems:"center",borderRadius:20,elevation:10
+                    width:Dimensions.get("window").width*0.15,height:Dimensions.get("window").width*0.16,marginTop:5, marginLeft:5,backgroundColor:"#4CE39B",justifyContent:"center",alignItems:"center",borderRadius:20,elevation:10
 
                   }}>
                     <Text style={{fontSize:20}}>
@@ -196,7 +196,7 @@ export default class TodaysTrainingContent extends Component {
 
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
         <View style={styles.container}>
           <this.exercises />
@@ -216,12 +216,13 @@ export default class TodaysTrainingContent extends Component {
             </Text>
           </TouchableOpacity>
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
+    paddingTop:50,
     backgroundColor: "#6B9FED",
     height: Dimensions.get("window").height,
     width: Dimensions.get("window").width,

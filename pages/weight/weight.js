@@ -234,7 +234,7 @@ export default class Weight extends Component {
                   this.state.weight5,
                   this.state.weight6,
                 ],
-                color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`, // optional
+                color: (opacity = 1) => `rgba(212, 65, 13, ${opacity})`, // optional
                 strokeWidth: 2, // optional
               },
             ],
@@ -248,7 +248,7 @@ export default class Weight extends Component {
             backgroundGradientFrom: "#F2F2F2",
             backgroundGradientTo: "#F2F2F2",
             decimalPlaces: 0, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            color: (opacity = 1) => `rgba(247, 112, 64, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
             style: {
               borderRadius: 16,
@@ -271,6 +271,21 @@ export default class Weight extends Component {
     );
   };
 
+  score = () => {
+    var score = 50;
+    return (
+      <View style={{width:Dimensions.get("window").width, height:Dimensions.get("window").height, alignItems:"center"}}>
+        <View style={{width:Dimensions.get("window").width*0.4, height:Dimensions.get("window").width*0.4, backgroundColor:"#d4410d", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
+        <View style={{width:Dimensions.get("window").width*0.35, height:Dimensions.get("window").width*0.35, backgroundColor:"white", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
+          <Text style={{fontSize:60}}>
+            {score}
+          </Text>
+        </View>
+        </View>
+      </View>
+    );
+  };
+
 
   render() {
     return (
@@ -287,7 +302,7 @@ export default class Weight extends Component {
             
             <this.weightForm />
             <this.weightContent />
-           
+           <this.score />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -296,11 +311,7 @@ export default class Weight extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#131A26",
-    alignItems: "center",
-    justifyContent: "center",
-  },
+  
 
   textInput: {
     borderRadius: 20,

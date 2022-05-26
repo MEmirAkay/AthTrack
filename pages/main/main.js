@@ -141,7 +141,7 @@ export default class Main extends Component {
   };
   render() {
     return (
-      <SafeAreaView style={styles.safe}>
+      <View>
         <StatusBar hidden={true} />
         <ScrollView contentContainerStyle={styles.container}>
           <View style={{ paddingTop: 30 }}>
@@ -151,7 +151,7 @@ export default class Main extends Component {
             <this.WeightBox />
           </View>
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }

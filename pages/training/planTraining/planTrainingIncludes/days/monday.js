@@ -308,7 +308,7 @@ export default class Monday extends Component {
   
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
         <this.MondayPage />
         <View style={{backgroundColor:"#6B9FED",width:Dimensions.get("window").width,height:Dimensions.get("window").height}}>
@@ -317,13 +317,14 @@ export default class Monday extends Component {
             renderItem={this._renderItem}
           />
         </View>
-      </SafeAreaView>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop:50,
     backgroundColor: "#2A69F7",
     alignItems: "center",
     justifyContent: "center",

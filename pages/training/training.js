@@ -21,18 +21,7 @@ export default function Training({navigation}) {
           <Text style={styles.navigatorHeader}>Today's Training</Text>
         </View>
 
-        <View style={styles.statContainer}>
-          <View style={styles.statBar}>
-            <Text style={styles.statTexts}>Volume</Text>
-            <View style={styles.loadbarContainer}>
-              <View style={styles.loadbarMain}>
-                <View style={styles.ladbarLoad}>
-                  <Text></Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        </View>
+       
       </TouchableOpacity>
     );
   };
@@ -66,16 +55,16 @@ export default function Training({navigation}) {
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <StatusBar hidden={true} />
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={{ paddingTop: 30, height: Dimensions.get("window").height}}>
+        <View style={{ height: Dimensions.get("window").height, alignItems:"center" ,justifyContent:"center"}}>
           <TodayTraining />
           <TrainingStats />
           <PlanTraining  />
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

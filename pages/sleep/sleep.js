@@ -133,7 +133,7 @@ export default class Sleep extends Component {
 
     return (
       <View>
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ flexDirection: "column" ,marginTop:20 }}>
           <TextInput
             style={styles.textInput}
             onChangeText={
@@ -292,7 +292,7 @@ export default class Sleep extends Component {
             backgroundGradientFrom: "#F2F2F2",
             backgroundGradientTo: "#F2F2F2",
             decimalPlaces: 0, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+            color: (opacity = 1) => `rgba(252, 28, 169, ${opacity})`,
             labelColor: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
             style: {
               borderRadius: 16,
@@ -315,19 +315,33 @@ export default class Sleep extends Component {
     );
   };
 
-
+  score = () => {
+    var score = 50;
+    return (
+      <View style={{width:Dimensions.get("window").width, height:Dimensions.get("window").height, alignItems:"center", marginTop:20}}>
+        <View style={{width:Dimensions.get("window").width*0.4, height:Dimensions.get("window").width*0.4, backgroundColor:"#FC1CA9", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
+        <View style={{width:Dimensions.get("window").width*0.35, height:Dimensions.get("window").width*0.35, backgroundColor:"white", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
+          <Text style={{fontSize:60}}>
+            {score}
+          </Text>
+        </View>
+        </View>
+      </View>
+    );
+  };
 
   render() {
     return (
-      <SafeAreaView>
+      <View>
         <StatusBar hidden={true} />
         <ScrollView>
           <View style={{backgroundColor:"#FD76CB", height:Dimensions.get("window").height,width:Dimensions.get("window").width}}>
             <this.sleepForm />
           <this.sleepContent />
+          <this.score />
           </View>        
         </ScrollView>
-      </SafeAreaView>
+      </View>
     );
   }
 }
