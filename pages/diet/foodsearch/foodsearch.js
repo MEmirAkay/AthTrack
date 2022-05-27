@@ -511,7 +511,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     position: "absolute",
     top: 30,
-    backgroundColor: "#262a45",
+    backgroundColor: "#2ae88d",
     borderRadius: 20,
     elevation: 10,
     alignSelf: "center",

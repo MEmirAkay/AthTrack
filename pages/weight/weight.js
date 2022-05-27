@@ -66,11 +66,11 @@ export default class Weight extends Component {
             onChangeText={(data) => this.setState({ weight: data })}
           ></TextInput>
         </View>
-        <Text style={{ textAlign: "center", marginTop: 20 }}>
+        <Text style={{ textAlign: "center" }}>
           How feel your body?
         </Text>
         <View
-          style={{ flexDirection: "row", margin: 20, justifyContent: "center" }}
+          style={{ flexDirection: "row", margin: 10, justifyContent: "center" }}
         >
           <TouchableOpacity
             style={{
@@ -262,7 +262,7 @@ export default class Weight extends Component {
           bezier
           style={{
             alignSelf:"center",
-            marginVertical: 40,
+            marginVertical: 10,
             borderRadius: 20,
             
           }}
@@ -291,13 +291,13 @@ export default class Weight extends Component {
     return (
       <SafeAreaView style={styles.safe}>
         <StatusBar hidden={true} />
-        <ScrollView>
-          <View
-            style={{
+        <ScrollView style={{
               backgroundColor: "#f77040",
               width: Dimensions.get("window").width,
               height: Dimensions.get("window").height,
-            }}
+            }}>
+          <View
+           
           >
             
             <this.weightForm />

@@ -334,8 +334,8 @@ export default class Sleep extends Component {
     return (
       <View>
         <StatusBar hidden={true} />
-        <ScrollView>
-          <View style={{backgroundColor:"#FD76CB", height:Dimensions.get("window").height,width:Dimensions.get("window").width}}>
+        <ScrollView style={{backgroundColor:"#FD76CB", height:Dimensions.get("window").height,width:Dimensions.get("window").width}}>
+          <View >
             <this.sleepForm />
           <this.sleepContent />
           <this.score />
