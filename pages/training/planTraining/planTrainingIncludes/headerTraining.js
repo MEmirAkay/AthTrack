@@ -76,7 +76,7 @@ export default class HeaderPlanTraining extends Component {
 
     const onDayPress = (day) => {
       setSelected(day.dateString);
-      this.setState({ start_day: day.dateString });
+      this.setState({ start_day: day.timestamp });
     };
 
     const marked = useMemo(() => {
@@ -84,7 +84,7 @@ export default class HeaderPlanTraining extends Component {
         [selected]: {
           selected: true,
           disableTouchEvent: true,
-          selectedColor: "#2d6ac4",
+          selectedColor: "#2A69F7",
           selectedTextColor: "white",
         },
       };

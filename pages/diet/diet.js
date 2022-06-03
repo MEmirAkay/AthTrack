@@ -114,7 +114,7 @@ export default class Diet extends Component {
       return () => {};
     }, []);
     return (
-      <View style={{paddingTop:30}}>
+      <View style={{ paddingTop: 30 }}>
         <View>
           <TouchableOpacity
             style={styles.submitButton}
@@ -230,11 +230,7 @@ export default class Diet extends Component {
       <View>
         <StatusBar hidden={true} />
         <View style={styles.container}>
-          <ScrollView>
-            
-
-            <this.dietForm />
-          </ScrollView>
+          <this.dietForm />
           <this.dietRecommended />
         </View>
       </View>
@@ -245,9 +241,9 @@ export default class Diet extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#5AC994",
-    paddingTop:20,
-    width:Dimensions.get("window").width,
-    height:Dimensions.get("window").height,
+    paddingTop: 20,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
   },
 
   submitButton: {

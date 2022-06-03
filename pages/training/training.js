@@ -6,7 +6,8 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Alert
 
 } from "react-native";
 
@@ -44,7 +45,29 @@ export default function Training({navigation}) {
     return (
       <TouchableOpacity
         style={styles.boxcontainer}
-        onPress={() => navigation.navigate("PlanTrainingContent")}
+        onPress={() =>{ 
+          fetch("https://mustafaemirakay.com/pages/projects/bitirme/api/checkPrograms.php",
+            {
+              method: "POST",
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                today:new Date().getTime(),
+              }),
+            }
+          ).then((response) => response.json())
+           .then((responseJson) => {
+             if(responseJson.resp == "error"){
+              Alert.alert("You already has program that currently in use");
+             }else if (responseJson.resp == "success"){
+              navigation.navigate("PlanTrainingContent");
+             }
+
+            });
+        }
+      }
       >
         <View style={styles.boxHeader}>
           <Text style={styles.navigatorHeader}>Plan Training</Text>
