@@ -71,15 +71,7 @@ export default class Monday extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
           this.setState({ dataSource: responseJson });
-          console.log("start");
-        
-          console.log(this.state.exerciseDay);
-          console.log(this.state.exercise_ProgramStartDay);
-        });
-    
-  
-  
-  
+        });  
     }
 
   registration_Function = () => {

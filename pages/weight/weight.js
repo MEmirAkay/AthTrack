@@ -28,6 +28,7 @@ export default class Weight extends Component {
       weight4: 0,
       weight5: 0,
       weight6: 0,
+      weightScore: 0,
     };
   }
 
@@ -179,6 +180,7 @@ export default class Weight extends Component {
             style={styles.submitButton}
             onPress={() => {
               this.submitWeight();
+              this.props.navigation.navigate("Main");
             }}
           >
             <Text style={{ textAlign: "center", color: "white", fontSize: 25 }}>
@@ -213,8 +215,24 @@ export default class Weight extends Component {
           this.setState({ weight5: this.state.weightData[4] });
           this.setState({ weight6: this.state.weightData[5] });
 
-          console.log(this.state.weight1);
+         
         });
+
+        fetch(
+          "https://mustafaemirakay.com/pages/projects/bitirme/api/weightScore.php",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((responseJson) => {
+            this.setState({ weightScore: responseJson.weightScore });
+            
+          });
 
       return () => {};
     }, []);
@@ -272,7 +290,7 @@ export default class Weight extends Component {
   };
 
   score = () => {
-    var score = 50;
+    var score = this.state.weightScore;
     return (
       <View style={{width:Dimensions.get("window").width, height:Dimensions.get("window").height, alignItems:"center"}}>
         <View style={{width:Dimensions.get("window").width*0.4, height:Dimensions.get("window").width*0.4, backgroundColor:"#d4410d", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>

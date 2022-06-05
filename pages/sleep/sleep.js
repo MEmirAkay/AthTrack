@@ -22,7 +22,7 @@ export default class Sleep extends Component {
 
     this.state = {
       sleep_time: 0,
-      bed_time: 0,
+      
       feeling : "",
       date: new Date().getDate() + "-" + (new Date().getMonth()+1) + "-" + new Date().getFullYear(),
       dateCheck: "",
@@ -42,7 +42,7 @@ export default class Sleep extends Component {
       st6:"",
       st7:"",
 
-      sleepScore:""
+      sleepScore:0,
     };
   }
 
@@ -54,8 +54,7 @@ export default class Sleep extends Component {
       }else{
         console.log("date: ",this.state.date);
         console.log("check: ",this.state.dateCheck);
-        if (this.state.sleep_time != "" && this.state.feeling != "" && this.state.bed_time != "") {
-      console.log("Bed time : %d", this.state.bed_time);
+        if (this.state.sleep_time != "" && this.state.feeling != "") {
       console.log("Sleep time: %d", this.state.sleep_time);
       console.log("Feeling: %s", this.state.feeling);
       console.log("Date : %s", this.state.date);
@@ -68,7 +67,7 @@ export default class Sleep extends Component {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          bed_time: this.state.bed_time,
+          
           sleep_time: this.state.sleep_time,
           feeling: this.state.feeling,
           date: this.state.date
@@ -109,6 +108,8 @@ export default class Sleep extends Component {
         .then((response) => response.json())
         .then((responseJson) => {
           
+          
+
           this.setState({data1: responseJson[0]});
           this.setState({data2: responseJson[1]});
           this.setState({data3: responseJson[2]});
@@ -117,6 +118,8 @@ export default class Sleep extends Component {
           this.setState({data6: responseJson[5]});
           this.setState({data7: responseJson[6]});
           this.setState({sleepScore: responseJson[7]});
+
+          console.log(this.state.sleepScore);
 
           this.setState({st1: responseJson[0].sleepTime});  
           this.setState({st2: responseJson[1].sleepTime});
@@ -134,13 +137,7 @@ export default class Sleep extends Component {
     return (
       <View>
         <View style={{ flexDirection: "column" ,marginTop:20 }}>
-          <TextInput
-            style={styles.textInput}
-            onChangeText={
-              (data) => this.setState({ bed_time: data.slice(0,data.indexOf(':')) })           
-            }
-            placeholder="When did you get in bed? (Example : 23:00)"
-          ></TextInput>
+          
           <TextInput
             style={styles.textInput}
             onChangeText={
@@ -316,13 +313,13 @@ export default class Sleep extends Component {
   };
 
   score = () => {
-    var score = 50;
+    const score = this.state.sleepScore;
     return (
       <View style={{width:Dimensions.get("window").width, height:Dimensions.get("window").height, alignItems:"center", marginTop:20}}>
         <View style={{width:Dimensions.get("window").width*0.4, height:Dimensions.get("window").width*0.4, backgroundColor:"#FC1CA9", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
         <View style={{width:Dimensions.get("window").width*0.35, height:Dimensions.get("window").width*0.35, backgroundColor:"white", elevation:20, borderRadius:120, alignItems:"center", justifyContent:"center"}}>
           <Text style={{fontSize:60}}>
-            {score}
+            {score.sleepScore}
           </Text>
         </View>
         </View>

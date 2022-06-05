@@ -211,6 +211,7 @@ export default class FoodSearch extends Component {
                 onPress={() => {
                   setModalOpen(false);
                   this.postNewFood();
+                  this.props.navigation.navigate("Main");
                 }}
               >
                 <Text style={{ color: "white", fontSize: 20 }}>Submit</Text>
@@ -378,13 +379,17 @@ export default class FoodSearch extends Component {
                 onPress={() => {
                   selectedFoodOperations(this.state.selectedFoodId);
                   setModalOpen(false);
+                  this.props.navigation.navigate("Main");
                 }}
               >
                 <Text style={{ color: "white", fontSize: 20 }}>Submit</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.Cancel}
-                onPress={() => setModalOpen(false)}
+                onPress={() => {
+                  setModalOpen(false);
+                  
+                }}
               >
                 <Text style={{ color: "white", fontSize: 20 }}>Cancel</Text>
               </TouchableOpacity>

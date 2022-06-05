@@ -13,10 +13,15 @@ import {
 
 export default function Training({navigation}) {
   const TodayTraining = () => {
+
     return (
       <TouchableOpacity
         style={styles.boxcontainer}
-        onPress={() => navigation.navigate("TodaysTrainingContent")}
+        onPress={() => {
+          navigation.navigate("TodaysTrainingContent");
+
+        }
+      }
       >
         <View style={styles.boxHeader}>
           <Text style={styles.navigatorHeader}>Today's Training</Text>

@@ -50,6 +50,24 @@ export default class Tuesday extends Component {
         const startDay = responseJson;
         this.setState({ exercise_ProgramStartDay: startDay });
       });
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/dailyexerciselist.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            exercise_day: this.state.exerciseDay,
+            program_start_day: this.state.exercise_ProgramStartDay,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ dataSource: responseJson });
+        }); 
   }
 
   registration_Function = () => {
@@ -153,7 +171,30 @@ export default class Tuesday extends Component {
 
   MondayPage = () => {
     const [modalOpen, setModalOpen] = useState(false);
-
+    useEffect(() => {
+      fetch(
+        "https://mustafaemirakay.com/pages/projects/bitirme/api/dailyexerciselist.php",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            exercise_day: this.state.exerciseDay,
+            program_start_day: this.state.exercise_ProgramStartDay,
+          }),
+        }
+      )
+        .then((response) => response.json())
+        .then((responseJson) => {
+          this.setState({ dataSource: responseJson });
+          console.log("start");
+        
+          console.log(this.state.exerciseDay);
+          console.log(this.state.exercise_ProgramStartDay);
+        });
+    }, []);
     return (
       <View style={styles.container}>
         <Modal visible={modalOpen} animationType="slide" transparent={true}>
@@ -229,7 +270,7 @@ export default class Tuesday extends Component {
             fontSize: 50,
           }}
         >
-          Monday
+          Tuesday
         </Text>
 
         <TouchableOpacity
@@ -253,7 +294,7 @@ export default class Tuesday extends Component {
       <View>
         <StatusBar hidden={true} />
         <this.MondayPage />
-          <View>
+          <View style={{backgroundColor:"#6B9FED",width:Dimensions.get("window").width,height:Dimensions.get("window").height}}>
             <FlatList
               data={this.state.dataSource}
               renderItem={this._renderItem}

@@ -8,6 +8,7 @@ import {
   Dimensions,
   FlatList,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 
 export default class TodaysTrainingContent extends Component {
@@ -19,7 +20,7 @@ export default class TodaysTrainingContent extends Component {
     };
   }
 
-  changeExerciseStatus = (id, status) => {
+  changeExerciseStatus = (id, exercise_name, exercise_kg, status) => {
     console.log(new Date().getTime());
     fetch(
       "https://mustafaemirakay.com/pages/projects/bitirme/api/exerciseStatus.php",
@@ -31,6 +32,8 @@ export default class TodaysTrainingContent extends Component {
         },
         body: JSON.stringify({
           exerciseId: id,
+          exerciseName: exercise_name,
+          exerciseKg: exercise_kg,
           exerciseStatus: status,
         }),
       }
@@ -103,7 +106,8 @@ export default class TodaysTrainingContent extends Component {
     }, []);
 
     const ItemView = ({ item }) => {
-
+      console.log(item);
+      const exerciseKG = (new Date().getTime() - (item.program_start_day*1000)) != 0 ? parseInt(item.exercise_start_kg)+(item.exercise_increase * (Math.round((new Date().getTime() - (item.program_start_day*1000)) / 604800000)+1)): item.exercise_start_kg;
       return (
         <View
           style={{
@@ -196,7 +200,7 @@ export default class TodaysTrainingContent extends Component {
                 }}
                 onPress={() => {
                   
-                  this.changeExerciseStatus(item.id,"Undone");
+                  this.changeExerciseStatus(item.id, item.exercise_name, exerciseKG,"Undone");
                   
                 }}
               >
@@ -215,7 +219,7 @@ export default class TodaysTrainingContent extends Component {
                   elevation: 10,
                 }}
                 onPress={() => {
-                  this.changeExerciseStatus(item.id,"Done");
+                  this.changeExerciseStatus(item.id, item.exercise_name, exerciseKG,"Done");
                 }}
               >
                 <Text style={{ fontSize: 20 }}>👍🏻</Text>
@@ -253,6 +257,12 @@ export default class TodaysTrainingContent extends Component {
               backgroundColor: "#4CE39B",
               elevation: 20,
             }}
+
+            onPress = { () => {
+              this.props.navigation.navigate('Main');
+              Alert.alert("Successful");
+            }}
+
           >
             <Text style={{ fontSize: 20, color: "white" }}>Submit</Text>
           </TouchableOpacity>
